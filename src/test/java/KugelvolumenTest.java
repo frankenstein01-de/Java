@@ -1,21 +1,27 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-public class KugelvolumenTest {
 
-    @Test
-    void kugelvolumenNegativ(){
-        assertThrows(IllegalArgumentException.class,()->Kugelvolumen.berechneKugelvolumen(-1));
+    class KugelvolumenTest {
+
+        @Test
+        void testRadius0() {
+            assertEquals(0.0, Kugelvolumen.berechneKugelvolumen(0), 0.0001);
+        }
+
+        @Test
+        void testRadius1() {
+            assertEquals((4.0 / 3.0) * Math.PI, Kugelvolumen.berechneKugelvolumen(1), 0.0001);
+        }
+
+        @Test
+        void testRadius5() {
+            assertEquals((4.0 / 3.0) * Math.PI * 125, Kugelvolumen.berechneKugelvolumen(5), 0.0001);
+        }
+
+        @Test
+        void testNegativerRadius() {
+            assertThrows(IllegalArgumentException.class, () ->
+                    Kugelvolumen.berechneKugelvolumen(-1));
+        }
     }
-    @Test
-    void kugelvolumenEins(){
-        assertEquals(4/3*Math.PI*1*1*1,Kugelvolumen.berechneKugelvolumen(1));
-    }
-    @Test
-    void kugelvolumenNull(){
-        assertEquals(4/3*Math.PI*0*0*0,Kugelvolumen.berechneKugelvolumen(0));
-    }
-    @Test
-    void kugelvolumen5(){
-        assertEquals(4/3*Math.PI*5*5*5,Kugelvolumen.berechneKugelvolumen(5));
-    }
-}
+

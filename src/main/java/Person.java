@@ -1,19 +1,25 @@
+
 public class Person {
     private String vorname;
     private String nachname;
     private Adresse adresse;
+
+
     public Person(String vorname,String nachname,Adresse adresse){
-        if(Character.isLowerCase(vorname.charAt(0))){
-            throw new RuntimeException("Vorname muss mit einem  Großbuchstaben bgeinnen");
+        char vErster =vorname.charAt(0);
+        char nErster =nachname.charAt(0);
+        if(!Character.isUpperCase(vErster)){
+            throw new RuntimeException("Der Erste Buchstabe des Vornamens muss Groß sein");
         }else{
             this.vorname=vorname;
-        }
-        if(Character.isLowerCase(nachname.charAt(0))){
-            throw new RuntimeException("Nachname muss mit einem  Großbuchstaben bgeinnen");
+        } if(!Character.isUpperCase(nErster)){
+            throw new RuntimeException("Der Erste Buchstabe des Nachnamens muss Groß sein");
         }else{
             this.nachname=nachname;
         }
         this.adresse=adresse;
+
+
     }
     public String getVorname(){
         return vorname;
@@ -32,22 +38,25 @@ public class Person {
         private String ort;
 
         public Adresse(String strasse,String hausnummer,int postleitzahl,String ort){
-            if(Character.isLowerCase(strasse.charAt(0))){
-                throw new RuntimeException("Vorname muss mit einem  Großbuchstaben bgeinnen");
+            char sErster =strasse.charAt(0);
+            char oErster =ort.charAt(0);
+            char hErster =hausnummer.charAt(0);
+            if(!Character.isUpperCase(sErster)){
+                throw new RuntimeException("Der Erste Buchstabe der Straße muss Groß sein");
             }else{
                 this.strasse=strasse;
             }
-            if(Character.isLowerCase(ort.charAt(0))){
-                throw new RuntimeException("Vorname muss mit einem  Großbuchstaben bgeinnen");
+            if(!Character.isDigit(hErster)){
+                throw new RuntimeException("Der Erste Buchstabe der Hausnummer muss eine Ziffer sein");
+            }else {
+                this.hausnummer = hausnummer;
+            }
+            this.postleitzahl = postleitzahl;
+            if(!Character.isUpperCase(oErster)){
+                throw new RuntimeException("Der Erste Buchstabe des Ortes muss Groß sein");
             }else{
                 this.ort=ort;
             }
-            if(!Character.isDigit(hausnummer.charAt(0))){
-                throw new RuntimeException("Die Hausnummer muss mit einer Ziffer beginnen");
-            }else{
-                this.hausnummer=hausnummer;
-            }
-            this.postleitzahl=postleitzahl;
 
         }
         public String getStrasse(){
@@ -59,9 +68,9 @@ public class Person {
         public int getPostleitzahl(){
             return postleitzahl;
         }
-        public  String getOrt(){
+        public String getOrt(){
             return ort;
         }
-
     }
 }
+

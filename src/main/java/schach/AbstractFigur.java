@@ -11,6 +11,7 @@ public abstract class AbstractFigur implements Figur
     setY(y);
   }
 
+
   public int getX()
   {
     return x;

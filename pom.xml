@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.thws</groupId>
-    <artifactId>Maveuebung</artifactId>
+    <artifactId>Maven</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -24,8 +24,8 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.9.2</version>
         </dependency>
-    </dependencies>
 
+    </dependencies>
 
 
 </project>

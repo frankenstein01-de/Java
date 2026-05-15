@@ -2,18 +2,34 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 public class PunktTest {
     @Test
-    void punktVerschiben(){
-        Punkt.verschiebePunkt(1000,200);
-        assertEquals(1000,Punkt.x);
+    void testBereichOk(){
+
+        Punkt.verschiebePunkt(100,200);
+        assertEquals(100,Punkt.x);
         assertEquals(200,Punkt.y);
     }
     @Test
-    void negativ(){
-        assertThrows(RuntimeException.class,()->Punkt.verschiebePunkt(-1,-2));
+    void testNegativX(){
+        assertThrows(RuntimeException.class,()->{
+            Punkt.verschiebePunkt(-1,100);
+        });
     }
     @Test
-    void positiv(){
-        assertThrows(RuntimeException.class,()->Punkt.verschiebePunkt(1981,1081));
+    void testNegativY(){
+        assertThrows(RuntimeException.class,()->{
+            Punkt.verschiebePunkt(100,-1);
+        });
     }
-
+    @Test
+    void testZuGroX(){
+        assertThrows(RuntimeException.class,()->{
+            Punkt.verschiebePunkt(1921,100);
+        });
+    }
+    @Test
+    void testZuGroY(){
+        assertThrows(RuntimeException.class,()->{
+            Punkt.verschiebePunkt(100,1081);
+        });
+    }
 }

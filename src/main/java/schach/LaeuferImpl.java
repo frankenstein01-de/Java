@@ -10,18 +10,22 @@ public class LaeuferImpl extends AbstractFigur implements Laeufer
   public Brett gibErlaubteFelder()
   {
     Brett brett = new Brett();
-    int[][]dirs ={{1,1},{1,-1},{-1,1},{-1,-1}};
-    for(int i = 0;i<dirs.length;i++){
+    int[][]dirs ={ { 1,  1},  // rechts oben
+            { 1, -1},  // rechts unten
+            {-1,  1},  // links oben
+            {-1, -1}   // links unten
+    };
+    for(int i = 0;i< dirs.length;i++){
       int dxStep = dirs[i][0];
       int dyStep = dirs[i][1];
 
-      int dy = y+dyStep;
       int dx = x+dxStep;
+      int dy = y+dyStep;
 
-      while(dy>=1&&dy<=8&&dx>=1&&dx<=8){
+      while(dx>=1&&dx<=8&&dy>=1&&dy<=8){
         brett.markiereFeld(dx,dy);
-        dy= dy+dyStep;
-        dx= dx+dxStep;
+        dx=dx+dxStep;
+        dy=dy+dyStep;
       }
     }
     return brett;
@@ -40,5 +44,6 @@ public class LaeuferImpl extends AbstractFigur implements Laeufer
       }
       System.out.println();
     }
+    System.out.println();
   }
 }

@@ -1,33 +1,40 @@
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 import java.util.Scanner;
+
+
 public class Punkt {
-    static int x;
-    static int y;
-    public static void verschiebePunkt(int zielX, int zielY) {
-        if(zielY>1080||zielY<0){
-            throw new RuntimeException("Die zielY darf nur im Bereich von 0-1080 sein!");
+    public static int x;
+    public static int y;
+
+    public static void main(String[]args) {
+        Scanner scanner = new Scanner(System.in);
+        int x;
+        int y;
+        while(true) {
+            x = scanner.nextInt();
+            y = scanner.nextInt();
+        try{
+            verschiebePunkt(x,y);
+            break;
+        }catch (RuntimeException e){
+            System.out.println("Fehler !"+ e.getMessage());
+            scanner.nextLine();
         }
-        if(zielX>1980||zielX<0){
-            throw new RuntimeException("Die zielX darf nur im Bereich von 0-1980 sein!");
         }
-        x = zielX;
-        y = zielY;
+
     }
-    public static void main(String[]args){
-        Scanner scanner =new Scanner(System.in);
 
-        while(true){
-            try{
-                int xEin=scanner.nextInt();
-                int yEin=scanner.nextInt();
+    public static void verschiebePunkt(int zielX, int zielY) {
 
-                verschiebePunkt(xEin,yEin);
-                break;
-            }catch(RuntimeException e){
-                System.out.println(e.getMessage());
-                scanner.nextLine();
-            }
+        if(zielX<0||zielX>1920) {
+            throw new RuntimeException("X dar nicht Größer wie 1920 und nicht kleiner wie 0 sein ");
+
+        }else if(zielY<0||zielY>1080){
+            throw new RuntimeException("Y darf nicht größer wie 1080 und nicht kleiner wie 0 sein");
+        }else{
+            x=zielX;
+            y=zielY;
         }
-
-
     }
 }

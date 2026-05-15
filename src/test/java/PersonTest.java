@@ -2,37 +2,50 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 public class PersonTest {
     @Test
-    void personAnlegen(){
-        Person.Adresse a = new Person.Adresse("Lang","1a",97070,"Würzburg");
-        Person j= new Person("Max","Tee",a);
+    void testPersonErfolgreich(){
+        Person.Adresse a = new Person.Adresse("Hauptstraße", "12", 97070, "Würzburg");
+        Person p = new Person("Max", "Muster", a);
 
-        assertEquals("Max",j.getVorname());
-        assertEquals("Tee",j.getNachname());
-        assertEquals("Lang",j.getAdresse().getStrasse());
-        assertEquals("1a",j.getAdresse().getHausnummer());
-        assertEquals("Würzburg",j.getAdresse().getOrt());
+        assertEquals("Max",p.getVorname());
+        assertEquals("Muster",p.getNachname());
+        assertEquals("Hauptstraße",p.getAdresse().getStrasse());
+        assertEquals("12",p.getAdresse().getHausnummer());
+        assertEquals(97070,p.getAdresse().getPostleitzahl());
+        assertEquals("Würzburg",p.getAdresse().getOrt());
     }
     @Test
-    void vklein(){
-        Person.Adresse a = new Person.Adresse("Lang","1a",97070,"Würzburg");
-        assertThrows(RuntimeException.class,()->new Person("max","Tee",a));
+    void vKlein(){
+        Person.Adresse a = new Person.Adresse("Hauptstraße", "12", 97070, "Würzburg");
+        assertThrows(RuntimeException.class,()->{
+            new Person("max","Muster",a);
+        });
     }
     @Test
     void nKlein(){
-        Person.Adresse a = new Person.Adresse("Lang","1a",97070,"Würzburg");
-        assertThrows(RuntimeException.class,()->new Person("Max","tee",a));
+        Person.Adresse a = new Person.Adresse("Hauptstraße", "12", 97070, "Würzburg");
+        assertThrows(RuntimeException.class,()->{
+            new Person("Max","muster",a);
+        });
     }
     @Test
     void sKlein(){
-        assertThrows(RuntimeException.class,()->new Person.Adresse("lang","1a",97070,"Würzburg"));
+        assertThrows(RuntimeException.class,()->{
+            new Person.Adresse("hauptstraße", "12", 97070, "Würzburg");
+        });
+
     }
     @Test
     void oKlein(){
-        assertThrows(RuntimeException.class,()->new Person.Adresse("Lang","1a",97070,"würzburg"));
+        assertThrows(RuntimeException.class,()->{
+            new Person.Adresse("Hauptstraße", "12", 97070, "würzburg");
+        });
+
     }
     @Test
-    void hKeineZiffer(){
-        assertThrows(RuntimeException.class,()->new Person.Adresse("Lang","aa",97070,"würzburg"));
+    void hKlein(){
+        assertThrows(RuntimeException.class,()->{
+            new Person.Adresse("Hauptstraße", "a2", 97070, "Würzburg");
+        });
     }
 
 }

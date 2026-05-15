@@ -1,22 +1,35 @@
 package muenzautomat;
 
+import java.lang.invoke.LambdaMetafactory;
+
 /** Die nachfolgende Klasse beinhaltet einen sehr einfachen
  * Algorithmus zur Ermittlung des Wechselgelds: Es wird
  * der gesamte Betrag in 1-Cent-Muenzen ausgegeben.
  */ 
-public class SimpleChangeCalculator implements ChangeCalculator
-{
+public class SimpleChangeCalculator implements ChangeCalculator {
+
+	private static final int[] VALUES={
+			1,
+			2,
+			5,
+			10,
+			20,
+			50,
+			100,
+			200
+	};
+	@Override
 	public int[] getChange(int euros, int cent)
 	{
-		return new int[] {
-			euros * 100 + cent, // alles in 1-Cent-Muenzen
-			0,					// keine 2-Cent-Muenzen
-			0,					// keine 5-Cent-Muenzen
-			0,					// keine 10-Cent-Muenzen
-			0,					// keine 20-Cent-Muenzen
-			0,					// keine 50-Cent-Muenzen
-			0,					// keine 1-Euro-Muenzen
-			0					// keine 2-Euro-Muenzen
-		};
+		int amount = euros*100+cent;
+		int[]result = new int[VALUES.length];
+		for(int i= VALUES.length-1;i>=0;i--){
+			int coin = VALUES[i];
+			if(amount>=coin){
+				result[i]=amount/coin;
+				amount=amount%coin;
+			}
+		}
+		return result;
 	}
 }
