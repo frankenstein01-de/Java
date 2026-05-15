@@ -1,0 +1,4 @@
+\documentclass{article}
+\begin{document}
+\textbf{Was besagt das Substitutionsprinzip?}\\
+\end{dokument}
